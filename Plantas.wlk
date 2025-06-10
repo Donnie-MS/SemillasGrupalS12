@@ -1,6 +1,6 @@
 
 class Planta {
-  const property añoDeObtencion//Es decir, en qué año la semilla que le dio origen se sacó de su planta "madre";
+  const property anioDeObtencion//Es decir, en qué año la semilla que le dio origen se sacó de su planta "madre";
   var property altura
   method cantHorasQueToleraSol() = 0
   method esFuerte() {
@@ -26,24 +26,25 @@ class Menta inherits Planta{
 }
 class Soja inherits Planta {
   override method cantHorasQueToleraSol() {
-    var tolerancia = 9
-    if (altura < 0.5) {
-      tolerancia = 6
-    }
-    else if (altura < 1) {
+    var tolerancia = 6
+    if (altura > 0.5) {
       tolerancia = 7
+    }
+    else if (altura > 1) {
+      tolerancia = 9
     }
     return tolerancia
   }
   method condicionAlternativa() {
-    return añoDeObtencion > 2007 and altura > 1
+    return anioDeObtencion > 2007 and altura > 1
   }
   override method daNuevasSemillas() = super() or self.condicionAlternativa()
   method espacioQueOcupa() = altura / 2
 }
 class Quinoa inherits Planta {
+  var property cantHorasQueToleraSol
   method espacioQueOcupa() = 0.5
-  method condicionAlternativa() = añoDeObtencion < 2005
+  method condicionAlternativa() = anioDeObtencion < 2005
   override method daNuevasSemillas() = super() or self.condicionAlternativa()
 }
 /*
